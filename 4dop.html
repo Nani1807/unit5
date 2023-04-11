@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task</title>
+	<style>
+		.highlight {
+			border: 2px solid red;
+		}
+	</style>
+</head>
+<body>
+	<p>Paragraph 1</p>
+	<p>Paragraph 2</p>
+	<a href="#">Link 1</a>
+	<a href="#">Link 2</a>
+	<div id="test_div">Test Div</div>
+	<button id="select-paragraphs">Select All Paragraphs</button>
+	<button id="select-links">Select All Links</button>
+	<button id="select-div">Select DIV</button>
+
+	<script>
+		// Додаємо обробник подій на body і використовуємо делегування подій
+		document.body.addEventListener('click', function(event) {
+			// Перевіряємо, чи натиснуто на кнопку
+				if (event.target.tagName === 'BUTTON') {
+					// Отримуємо id кнопки
+					const buttonId = event.target.id;
+					// Знаходимо відповідні елементи на сторінці
+					let elements = [];
+					if (buttonId === 'select-paragraphs') {
+						elements = document.getElementsByTagName('p');
+					} else if (buttonId === 'select-links') {
+						elements = document.getElementsByTagName('a');
+					} else if (buttonId === 'select-div') {
+						elements.push(document.getElementById('test_div'));
+					}
+					// Додаємо рамку на відповідні елементи
+					for (let i = 0; i < elements.length; i++) {
+						elements[i].classList.add('highlight');
+					}
+				}
+			});
+	</script>
+</body>
+</html>
